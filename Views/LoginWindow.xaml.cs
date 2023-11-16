@@ -26,5 +26,6 @@ namespace CompanyEmployeesWPF.Views
             InitializeComponent();
             DataContext = new LoginWindowViewModel(); 
         }
+      
     }
 }

@@ -28,26 +28,46 @@
             <Label FontSize="20" Content="Logowanie do programu Pracownicy Firmy:" Grid.ColumnSpan="2" Margin="5" HorizontalAlignment="Center" />
 
             <Label FontSize="14" Content="Nazwa użytkownika:" HorizontalAlignment="Right" Grid.Row="1" Margin="5" />
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" />
+            <TextBox
+                Text="{Binding UserLoginData.Login, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Margin="5" />
 
             <Label FontSize="14" Content="Hasło:" HorizontalAlignment="Right" Grid.Row="2" Margin="5" />
-            <PasswordBox Grid.Row="2" Grid.Column="1" Margin="5" />
+            
+        <PasswordBox 
+                x:Name="PassWordBox"
+                mah:PasswordBoxBindingBehavior.Password="{Binding UserLoginData.Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="5" 
+                
+            />
+        <Label 
+            Foreground="Red" 
+            Visibility="{Binding IsUserLoginDataNotValid, Converter={StaticResource BooleanToVisibilityConverter}}"
+            FontSize="14" 
+            Content="Podano nieprawidłowy login lub hasło. Spróbuj jeszcze raz" 
+            Grid.Row="3" 
+            Margin="5" 
+            Grid.ColumnSpan="2" />
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" Grid.Row="4" Grid.Column="1" >
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" Grid.Row="4" Grid.Column="1" >
                 <Button 
                     Command="{Binding CancelCommand}" 
                     CommandParameter="{Binding ElementName=LogWin}"
                     FontSize="12" 
                     Content="Anuluj" 
                     Margin="5" />
-                <Button 
+            <Button 
                     Command="{Binding ConfirmCommand}" 
                     CommandParameter="{Binding ElementName=LogWin}"
+                    IsEnabled="{Binding UserLoginData.IsValid}"
                     FontSize="12" 
                     Content="Zaloguj" 
                     Margin="5" />
-
-            </StackPanel>
+        </StackPanel>
 
     </Grid>
 </mah:MetroWindow>

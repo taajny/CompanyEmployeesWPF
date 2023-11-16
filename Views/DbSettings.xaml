@@ -1,0 +1,117 @@
+﻿<mah:MetroWindow x:Class="CompanyEmployeesWPF.Views.DbSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompanyEmployeesWPF.Views"
+        
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Name="DbSettingsWindow"
+        Title="Ustawienia logowania do bazy danych"
+        Height="275" 
+        Width="400"    
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Content="Adres serwera:"
+            Margin="5"
+        />
+        <TextBox
+            Text="{Binding DbSettings.dbServerAddress, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="5"
+        />
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="Nazwa serwera:"
+            Margin="5"
+        />
+        <TextBox
+            Text="{Binding DbSettings.dbServerName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="5"
+        />
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Content="Nazwa bazy danych:"
+            Margin="5"
+        />
+        <TextBox
+            Text="{Binding DbSettings.dbName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="5"
+        />
+
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Content="Użytkownik:"
+            Margin="5"
+        />
+        <TextBox
+            Text="{Binding DbSettings.dbUserName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="5"
+        />
+
+        <Label
+            Grid.Row="4"
+            Grid.Column="0"
+            Content="Hasło:"
+            Margin="5"
+        />
+        
+        <PasswordBox
+            mah:PasswordBoxBindingBehavior.Password="{Binding DbSettings.dbPassWord, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            Grid.Row="4"
+            Grid.Column="1"
+            Margin="5"
+        />
+
+        <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Right" Grid.Row="5" Orientation="Horizontal" Margin="5" >
+            <Button 
+                Command="{Binding CloseCommand}"
+                CommandParameter="{Binding ElementName=DbSettingsWindow}"
+                Content="Anuluj" 
+                Margin="5" 
+                Height="25" 
+                Width="100"
+            />
+
+            <Button
+                Command="{Binding SaveCommand}"
+                CommandParameter="{Binding ElementName=DbSettingsWindow}"
+                Content="Zapisz"
+                Margin="5"
+                Height="25"
+                Width="100"
+                IsEnabled="{Binding DbSettings.IsValid}"
+                />
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>

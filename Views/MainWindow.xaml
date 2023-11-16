@@ -7,15 +7,108 @@
         xmlns:local="clr-namespace:CompanyEmployeesWPF"
         mc:Ignorable="d"
         Title="Pracownicy firmy - okno główne"
-        Height="250" 
-        Width="600"
+        Height="500" 
+        Width="960"
         WindowStartupLocation="CenterScreen"
     >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="204"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
 
-        
-        
+        <Button 
+            Command="{Binding AddEmployeeCommand}" 
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Content="Dodaj"
+            Margin="2"
+        />
 
+        <Button 
+            Command="{Binding EditEmployeeCommand}" 
+            CommandParameter="{Binding SelectedEmployee}"
+            IsEnabled="{Binding CanEdit}"
+            Grid.RowSpan="2" 
+            Grid.Column="1" 
+            Content="Edytuj" 
+            Margin="2"
+        />
+
+        <Button 
+            Command="{Binding OpenDbSettings}"
+            Grid.Column="5"
+            Grid.RowSpan="2"
+            Content="Ustawienia bazy danych"
+            Margin="2" 
+        />
+
+        <Label 
+            HorizontalAlignment="Left" 
+            Content="Stanowisko zatrudnionego:" 
+            Grid.Column="2" 
+            Margin="2" 
+        />
+
+
+        <ComboBox
+            ItemsSource="{Binding JobPositions}"
+            SelectedValue="{Binding SelectedJobPositionId}"
+            DisplayMemberPath="Name"
+            SelectedValuePath="Id"
+            Grid.Row="1"
+            Grid.Column="2"
+            Width="200"
+            HorizontalAlignment="Left"
+            Margin="2"
+         />
+        <StackPanel Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Left">
+            <RadioButton GroupName="EmploymentStatus" IsChecked="{Binding Path=EmploymentArray[0]}" Content="wszystkich" />
+            <RadioButton GroupName="EmploymentStatus" IsChecked="{Binding Path=EmploymentArray[1]}" Content="zatrudnionych" />
+            <RadioButton GroupName="EmploymentStatus" IsChecked="{Binding Path=EmploymentArray[2]}" Content="zwolnionych" />
+            
+        </StackPanel>
+        <Button 
+            Grid.Column="4"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Command="{Binding RefreshCommand}"
+            Content="Odśwież"
+            Width="140"
+            Margin="2"
+        />
+        
+        <DataGrid 
+            Grid.Row="2" 
+            Grid.Column="0"
+            Grid.ColumnSpan="6"
+            Margin="2" 
+            ItemsSource="{Binding Employees}"
+            SelectedItem="{Binding SelectedEmployee}"
+            CanUserAddRows="False"
+            IsReadOnly="True"
+            SelectionMode="Single"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="Imię:" />
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Nazwisko:" />
+                <DataGridTextColumn Binding="{Binding Earnings}" Header="Zarobki:" />
+                <DataGridTextColumn Binding="{Binding DateOfEmployment}" Header="Data zatrudnienia:" />
+                <DataGridTextColumn Binding="{Binding DateOfRelease}" Header="Data zwolnienia:" />
+                <DataGridTextColumn Binding="{Binding Comments}" Header="Uwagi:" />
+                <DataGridTextColumn Binding="{Binding JobPositionId}" Visibility="Hidden" />
+                <DataGridTextColumn Binding="{Binding JobPosition.Name}" Header="Stanowisko" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </mah:MetroWindow>

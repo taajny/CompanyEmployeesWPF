@@ -1,7 +1,5 @@
-﻿using CompanyEmployeesWPF.Models.Domains;
+﻿using System;
 using CompanyEmployeesWPF.ViewModels;
-using MahApps.Metro.Controls;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,20 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace CompanyEmployeesWPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy DbSettings.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class DbSettings : MetroWindow
     {
-        public MainWindow()
+        public DbSettings()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new DbSettingsViewModel();
         }
     }
 }

@@ -1,6 +1,5 @@
-﻿using CompanyEmployeesWPF.Models.Domains;
+﻿using MahApps.Metro.Controls;
 using CompanyEmployeesWPF.ViewModels;
-using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +12,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Web.UI.WebControls;
+using CompanyEmployeesWPF.Models.Domains;
 
 namespace CompanyEmployeesWPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy ReleaseWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class ReleaseWindow : MetroWindow
     {
-        public MainWindow()
+        public ReleaseWindow(Employee employee = null)
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new ReleaseWindowViewModel(employee);
         }
     }
 }

@@ -13,20 +13,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CompanyEmployeesWPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy AddEditEmployee.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class AddEditEmployee : MetroWindow
     {
-        public MainWindow()
+        public AddEditEmployee(Employee employee = null)
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new AddEditEmployeeViewModel(employee);
         }
     }
 }
